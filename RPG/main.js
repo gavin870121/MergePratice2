@@ -16,7 +16,7 @@ $(function () {
     ctx = $("#myCanvas")[0].getContext("2d");
     //只有canvas要指定位置，指定繪圖是2D
     imgMain = new Image();
-    imgMain.src = "/RPG/images/spriteSheet.png";
+    imgMain.src = "./images/spriteSheet.png";
     
     currentImgMain = {
         "x": 0,
@@ -27,9 +27,9 @@ $(function () {
         ctx.drawImage(imgMain, 0, 0, 80, 130, currentImgMain.x, currentImgMain.y, gridLength, gridLength);
     }
     imgMountain = new Image();
-    imgMountain.src = "/RPG/images/material.png";
+    imgMountain.src = "images/material.png";
     imgEnemy = new Image();
-    imgEnemy.src = "/RPG/images/Enemy.png";
+    imgEnemy.src = "./images/Enemy.png";
     imgMountain.onload = function () {
         imgEnemy.onload = function () {
             for (var x in mapArray) {
