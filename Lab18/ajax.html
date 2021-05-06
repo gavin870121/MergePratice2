@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Lab18</title>
+</head>
+<body>
+    <button class="btn">AJAX</button>
+    <ul id="data">
+        <li></li>
+    </ul>
+    <script src="/jquery-3.6.0.js"></script>
+    <script>
+        $(function(){
+            /*
+               $.ajax({
+                   url:'', //url位置
+                   type:'get' // get/post
+                   data:{} //輸入資料
+                   success:function(response){},
+                   error:function(xhr){} 
+               })
+                
+            */
+           $('.btn').on('click',function(){
+            $.ajax({
+                url:'./test.json',
+                success:function(response){
+                    console.log(response)
+                    $('#data').html('抓到資料囉<hr>')
+                    $.each(response,function(index,ele){
+                        $('#data').append(
+                            `
+                            <li>
+                                ${index+1} ${ele.資源彙整機關} ${ele.鄉鎮市區公所名稱} 
+                                </li>
+                            `
+                        )
+                    })
+                },error:function(xhr){
+                    alert('發生錯誤'+xhr.status+' '+xhr.statusText)
+                }
+            })
+
+
+           })
+
+
+        })
+    </script>   
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab13</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .circle{
+            width: 48px;
+            height: 48px;
+            border-radius: 50px;
+            margin: 5px;
+            display: inline-block;
+
+        }
+        #target{
+            border: 2px solid black;
+            width: 200ox;
+            height: 200px;
+
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS</h1>
+    </header>
+    <div id="container">
+        <p id="p1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis fuga provident voluptatum consequuntur quia, hic error accusantium harum similique, vitae quis esse iste facere commodi doloribus dolor incidunt reiciendis voluptates!</p>
+        <hr>
+        <div>
+            <div id="target"></div>
+            <div class="circle" style="background:red"></div>
+            <div class="circle" style="background:orange"></div>
+            <div class="circle" style="background:yellow"></div>
+            <div class="circle" style="background:green"></div>
+            <div class="circle" style="background:blue"></div>
+            <div class="circle" style="background:blueviolet"></div>
+            <div class="circle" style="background:purple"></div>
+            
+        </div>
+    </div>
+    <script src="/jquery-3.6.0.js"></script>
+    <script>
+        $(function(){
+            $('.circle').on('click',function(){
+                let color=$(this).css('background')
+                console.log(color)
+                $('#target').css('background',color)
+            })
+            //.css("","")設值
+            //$('#p1').css('background','lightblue')
+            /*
+                .css({
+                    "":"",
+                    "":"",
+                })
+            */
+
+            $('#p1').css({
+                'background':"lightgray",
+                "font-style":"italic",
+                "color":"darkblue"
+            })
+            //.css("") 取值
+
+        })
+    </script>
+    
+</body>
+</html>

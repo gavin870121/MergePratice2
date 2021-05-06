@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab11</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        img{
+            width: 200px;
+
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background: lightgray;
+            transition: 5s;
+        }
+        .box.active{
+            background: lime;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>
+        jQuery text & html
+        </h1>
+    </header>
+    <div id="container">
+        <h3 id="source">Hello jQuery</h3>
+        <h3 id="target"></h3>
+        <button id="getText">get text</button>
+        <button id="setText">set text</button>
+        <hr>
+        <p><b>click</b> to change <span>html</span></p>
+        <button id="setHtml">set html</button>
+        <hr>
+
+
+        <img src="/Lab09/img/Logo.png" id="img1" alt="logo">
+        <button id="getAttr">get attr</button>
+        <button id="setAttr">set attr</button>
+        <a href="http://www.youtube.com/?gl=TW&hl=zh-TW" title="YT" id="link">YT</a>
+        <button id="setlink">set link</button>
+        <hr>
+        <button id="getProp">get prop</button>
+        <button id="setProp">set prop</button>
+        <br>
+        <input type="checkbox" name="" id="checkbox">同意條款
+        <br>
+        <button id="confirm">confirm</button>
+        <hr>
+        <button id="add">add class</button>
+        <button id="remove">remove class</button>
+        <button id="toggle">toggle class</button>
+
+        <br>
+        <div class="box">
+
+        </div>
+    </div>
+
+    <script src="/jquery-3.6.0.js"></script>
+    <script>
+        $(function(){
+            //.class()
+            $('#add').on('click',function(){
+                $('.box').addClass('active')
+            })
+            $('#remove').on('click',function() {
+                $('.box').removeClass('active')
+                
+            })
+            $('#toggle').on('click',function(){
+                $('.box').toggleClass('active')
+            })
+            
+            //prop()回傳布林值  unfinish
+            $('#getProp').on('click',function(){
+                console.log($('#checkbox').prop('checked'))
+            })
+            $('#setProp').on('click',function(){
+                $('#checkbox').prop('checked',true)
+            })
+            
+            $('#checkbox').on('click',function(){
+                let checked=$(this).prop('checked')
+                console.log(checked)
+                if(checked){
+                    $('#confirm').prop('disabled',false)
+                }else{
+                    $('#confirm').prop('disabled',true)
+                    
+                }
+            })
+            //attr
+            $('#setlink').on('click',function(){
+                $('#link').attr({
+                    "href":"http://www.google.com.tw",
+                    "title":"google"
+                }).text("google")
+            })
+
+
+            $('#getAttr').on('click',function(){
+                console.log("src:"+$('#img1').attr('src'),"alt:"+$('#img1').attr('alt'))
+            })
+            $('#setAttr').on('click',function(){
+                $('#img1').attr({
+                    "src":"/Lab09/img/1.jpg",
+                    "alt":"wallpaper"
+                })
+            })
+            //text()
+            $('#getText').on('click',function(){
+                let text=$('#source').text()
+                $('#target').text(text)
+            })
+            $('#setText').on('click',function(){
+                $('#source').text('set jQuery')
+            })
+            //html
+            $('p').one('click',function(){
+                let html=$('p').html()
+                $(this).text(html)
+            })
+            $('#setHtml').on('click',function(){
+                $('p').html('<h1>set html</h1>')
+            })
+            
+        })
+    </script>
+    
+</body>
+</html>

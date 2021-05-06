@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab15</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        table{
+            border:  2px solid black;
+        }
+        table tr td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>jquery each()</h1>
+    </header>
+    <div id="container">
+        <table>
+
+            <tr>
+                <td>11</td>
+                <td>11</td>
+                <td>11</td>
+                <td>11</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>11</td>
+                <td>11</td>
+                <td>11</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>11</td>
+                <td>11</td>
+                <td>11</td>
+            </tr>
+            <hr>
+        </table>
+        <button class="btn" id="btn" data-age='35' data-name="LBJ" data-team="Lakers">LBJ</button>
+        <button class="btn" id="btn" data-age='40' data-name="Kobe" data-team="Lakers">Kobe</button>
+        <div id="target"></div>
+    </div>
+    <script src="/jquery-3.6.0.js"></script>
+    <script>
+        $(function(){
+            //data()
+            //$('button#btn').on('click',function(){ 用id寫比較麻煩
+            $('.btn').on('click',function(){
+                let age=$(this).data('age'),team=$(this).data('team'),name=$(this).data('name')
+                console.log(`${name} ${team} ${age}`)
+                $('#target').text(`${name} ${team} ${age}`)
+            })
+            //inArray()回傳所在位置的索引值 從0開始 沒有回傳-1
+            let arr2=[0,1,2,3,4,5,"6","7","8",9,]
+            console.log($.inArray("7",arr2))
+
+
+            //map()回傳新的陣列
+            result=$.map(arr2,function(item,index){
+                return item*index
+            })
+            console.log(result)
+
+
+            //grep()根據設條件回傳
+            result_grep=$.grep(arr2,function(item,index){
+                return (item%2==0)
+            })
+            console.log(result_grep)
+
+
+
+            //each
+            let arr=['Eris','ggg','870119']
+
+
+            $.each(arr,function(index,val){
+                console.log(val)
+            })
+
+            let sum=0;
+            $('td').each(function(){
+                sum+=Number($(this).text())
+            })
+            console.log('sum:'+sum)
+            //JSON
+            // arr=[value,value,value]
+            let obj={name:'Eris',age:18}
+            // object={property:value,property:value}
+            //JSON array
+            let data=[
+                {
+                    "name":"Eris",
+                    "email":"Eris@gmail.com",
+                    "phone":"0918012133"
+                },
+                {
+                    "name":"Eris2",
+                    "email":"Eris@gmail.com",
+                    "phone":"0918012133"
+                },
+                {
+                    "name":"Eris3",
+                    "email":"Eris@gmail.com",
+                    "phone":"0918012133"
+                }
+            ]
+            $.each(data,function(index,emps){
+                console.log(`${emps.name}`)
+            })
+
+        })
+    </script>
+    
+</body>
+</html>

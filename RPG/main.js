@@ -124,7 +124,7 @@ $(document).on("keydown", function (event) {
                 ;
     }
     //確認目標位置不會超過地圖
-    if (targetImg.x <= 400 && targetImg.x >= 0 && targetImg.y <= 400 && targetImg.y >= 0) {
+    if (targetImg.x <= 800 && targetImg.x >= 0 && targetImg.y <= 600 && targetImg.y >= 0) {
         targetBlock.x = targetImg.y / gridLength;
         targetBlock.y = targetImg.x / gridLength;
     } else {

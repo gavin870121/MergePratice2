@@ -1,0 +1,23 @@
+body {
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: aliceblue;
+    line-height: 1.5em;
+}
+
+header {
+    background-color: #333;
+    color: yellow;
+    /* 內距 */
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#container {
+    width: 90%;
+    /* 邊距距離 */
+    margin: auto;
+    padding: 10px;
+
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab12</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header>
+        <h1>jQuery append</h1>
+    </header>
+    <div id="container">
+        <button id="append">append data</button>
+        <button id="prepend">prepend data</button>
+        <button id="appendTo">appendTo data</button>
+        <button id="prependTo">prependTo data</button>
+        <button id="after">after</button>
+        <button id="before">before</button>
+        <button id="insertAfter">insertAfter</button>
+        <button id="insertBefore">insertBefore</button>
+        <table>
+            <tbody>
+                <tr id="move">
+                    <td>1 Eris</td>
+                    <td>Eris0119</td>
+                    <td>20150928</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="/jquery-3.6.0.js"></script>
+    <script>
+        $(function(){
+            let i=1;
+            //insertAfter insertBefore
+            //a.insterAfter(b) A放B後
+            $('#insertBefore').on('click',function(){
+                $(`<tr>
+                    <td>${i} insertBefore</td>
+                    <td>insertBefore2266</td>
+                    <td>123456789</td>
+                    </tr>
+                    `
+                    ).insertBefore('#move')
+                i++
+            })
+            $('#insertAfter').on('click',function(){
+                $(`<tr>
+                    <td>${i} insertAfter</td>
+                    <td>insertAfter2266</td>
+                    <td>123456789</td>
+                    </tr>
+                    `
+                    ).insertAfter('#move')
+                i++
+            })
+            
+            
+            //after before 
+            //a.after(b) B放A後
+            $('#after').on('click',function(){
+                $('#move').after(
+                `<tr>
+                <td>${i} after</td>
+                <td>after5566</td>
+                <td>123456789</td>
+                </tr>
+                `
+                )
+                i++
+            })
+            $('#before').on('click',function(){
+                $('#move').before(
+                `<tr>
+                <td>${i} before</td>
+                <td>before7788</td>
+                <td>0987654321</td>
+                </tr>
+                `
+                );
+                i++
+            })
+
+            //appendTo() 移動要有DOM
+            $('#appendTo').on('click',function(){
+                $('#move').appendTo('tbody')
+            })
+            $('#prependTo').on('click',function(){
+                $('#move').prependTo('tbody')
+            })
+
+
+            //往前或往後新增資料
+            $('#append').on('click',function(){
+                let content=`
+                <tr>
+                <td>${i} append</td>
+                <td>append2344</td>
+                <td>123456789</td>
+                </tr>
+                `
+                $('tbody').append(content)
+                i++;
+            })
+            $('#prepend').on('click',function(){
+                let content=`
+                <tr>
+                <td>${i} prepend</td>
+                <td>prepend456</td>
+                <td>0987654321</td>
+                </tr>
+                `
+                $('tbody').prepend(content)
+                i++;
+            })
+
+
+            
+
+
+
+            
+        })
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab14</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <style>
+        .wrap {
+            width: 800px;
+            height: 400px;
+            background: black;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .slide-imgs{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            /* 水平排列 */
+            display: flex;
+            position: absolute;
+            width: 3200px;
+            /* left: -1600px; */
+        }
+
+        .slide-imgs li {
+            width: 800px;
+            height: 400px;
+
+        }
+        .slide-imgs li img{
+            width: 100%;
+            height: 100%;
+
+            /* 調整比例 */
+            object-fit: cover;
+            
+        }
+        .pages{
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            list-style: none;
+            bottom: 10px;
+            display: flex;
+            width: 100%;
+            /* 置中對齊 */
+            justify-content: center;
+        }
+        .pages li{
+            border: 1px solid white;
+            width: 30px;
+            height: 10px;
+            margin: 0 5px;
+        }
+        .pages li:hover{
+            background: white;
+        }
+        a.slide-arrow{
+            position: absolute;
+            color: white;
+            /* background-color: red; */
+            z-index: 10;
+            width: 40px;
+            height: 100%;
+            display: flex;
+            font-size: 36px;
+            justify-content: center;
+            align-items: center;
+            /* 滑鼠指標 */
+            cursor: pointer;
+            /* 透明度 */
+            opacity: .3;
+        }
+        .silde-arrow:hover{
+            opacity: 1;
+        }
+        .right{
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>jQuery Slide Ad</h1>
+    </header>
+    <div id="container">
+        <div class="wrap">
+            <a class="slide-arrow right" id="slideNext"><i class="fas fa-chevron-circle-right"></i></a>
+            <a class="slide-arrow left" id="slidePrev"><i class="fas fa-chevron-circle-left"></i></a>
+            <ul class="slide-imgs"id="slideImg">
+                <li><img src="img/car.jpg" ></li>
+                <li><img src="img/flower.jpg" alt=""></li>
+                <li><img src="img/V1.webp" alt=""></li>
+                <li><img src="img/V2.jpg" alt=""></li>
+            </ul>
+            <ul class="pages" id="pages">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <script src="/jquery-3.6.0.js"></script>
+    <script>
+        $(function () {
+            //第一個分頁變白色
+            let slideIndex=0
+            let slideMove=0
+            $('#pages li').eq(0).css('background','white')
+
+            $('#pages li').on('mouseenter',function(){
+                //第一張圖移動
+                //$('#slideImg').css('left',"-800px")
+                //index()
+                // console.log(index)
+                slideIndex=$(this).index()
+                //移動照片
+                slideMove=0-800*slideIndex
+                $('#slideImg').css('left',slideMove)
+                
+                $(this).css('background','white')
+                .siblings().css('background','transparent')
+            })
+
+            let slideCount=$('#slideImg li').length
+            $('#slideNext').on('click',function(){
+                console.log('next')
+                //區域變全域
+                slideIndex++
+                console.log(slideIndex)
+                
+                if(slideIndex>=slideCount){
+                    slideIndex=0
+                }
+                moveImg()
+                // //移動照片
+                // slideMove=0-800*slideIndex
+                // $('#slideImg').css('left',slideMove)
+                
+                // //分頁換色
+                // $('#pages li').eq(slideIndex).css('background','white')
+                // .siblings().css('background','transparent')
+            })
+
+
+
+            $('#slidePrev').on('click',function(){
+                console.log('prev')
+                slideIndex--
+                console.log(slideIndex)
+                if(slideIndex<0){
+                    slideIndex=slideCount-1
+                }
+                
+                moveImg()
+                //移動照片
+                // slideMove=0-800*slideIndex
+                // $('#slideImg').css('right',slideMove)
+                
+                // //分頁換色
+                // $('#pages li').eq(slideIndex).css('background','white')
+                // .siblings().css('background','transparent')
+                
+            })
+            
+            function moveImg(){
+                //移動照片
+                slideMove=0-800*slideIndex
+                $('#slideImg').css('left',slideMove)
+                
+                //分頁換色
+                $('#pages li').eq(slideIndex).css('background','white')
+                .siblings().css('background','transparent')
+                
+            }
+
+
+
+
+
+
+
+
+        })
+    </script>
+
+</body>
+
+</html>

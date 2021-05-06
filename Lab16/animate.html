@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab16</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background: lightgray;
+        }
+
+        .box2 {
+            /* 做動畫一定要設定 */
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background: lightgreen;
+            top: 150;
+            left: 150;
+        }
+        .box3 {
+            width: 200px;
+            height: 200px;
+            background: lightblue;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>jQuery Animate</h1>
+    </header>
+    <div id="container">
+        <button id="moveRight">moveRight</button>
+        <button id="moveLeft">moveLeft</button>
+        <button id="moveAround">moveAround</button>
+        <button id="swing">swing</button>
+        <div class="box2" id="box2"></div>
+        <hr>
+        <button class="btn" id="fadeOut">Fade Out</button>
+        <button class="btn" id="fadeIn">Fade In</button>
+        <button class="btn" id="fadeToggle">Fade Toggle</button>
+        <br>
+        <button class="btn" id="slideUp">slide Up</button>
+        <button class="btn" id="slideDown">slide Down</button>
+        <button class="btn" id="slideToggle">slide Toggle</button>
+        <div class="box" id="box"></div>
+        <hr>
+        <hr>
+        <button class="btn" id="animateCSS" >bounce</button>
+        <button class="btn" id="animateCSS" >flash</button>
+        <button class="btn" id="animateCSS" >pulse</button>
+
+        <div class="box3"></div>
+    </div>
+    <script src="/jquery-3.6.0.js"></script>
+    <script>
+        $(function () {
+            //animate()
+            $('#swing').on('click', function () {
+                $('#box2').animate({
+                    left: 300,
+                    top: 300
+                }, {
+                    duration: 1000,
+                    specialEasing: {
+                        top: 'linear',
+                        left: 'swing'
+                    }
+                }).animate({
+                    left: 0,
+                    top: 0
+                }, {
+                    duration: 1000,
+                    specialEasing: {
+                        top: 'linear',
+                        left: 'swing'
+                    }
+                })
+            })
+
+            $('#moveRight').on('click', function () {
+                $('#box2').animate({
+                    left: 500,
+                    height: 300,
+                    width: 300,
+                    'border-radius': '50%'
+                })
+            })
+
+            $('#moveLeft').on('click', function () {
+                $('#box2').animate({
+                    left: 0,
+                    height: 100,
+                    width: 100,
+                    'border-radius': '0'
+                })
+            })
+
+            $('#moveAround').on('click', function () {
+                let box = $('#box2')
+                box.animate({
+                    left: 300
+                }).animate({
+                    top: 300
+                }).animate({
+                    left: 0,
+                    top: 300
+                }).animate({
+                    top: 0,
+                    left: 0
+                })
+            })
+
+
+
+
+            //------------------fade-----------------
+            $('#fadeOut').on('click', function () {
+                $('#box').fadeOut(1000, function () {
+                    $('#fadeOut').text('it\'s gone')
+                })
+            })
+
+
+            $('#fadeIn').on('click', function () {
+                $('#box').fadeIn(1000, function () {
+                    $('#fadeOut').text('Fade Out')
+                })
+            })
+
+
+
+            $('#fadeToggle').on('click', function () {
+                $('#box').fadeToggle(1000)
+            })
+
+            $('#slideUp').on('click', function () {
+                $('#box').slideUp(1000)
+            })
+            $('#slideDown').on('click', function () {
+                $('#box').slideDown(1000)
+            })
+            $('#slideToggle').on('click', function () {
+                $('#box').slideToggle(1000)
+            })
+            //---------------------animate.css-----------------------------------
+
+            $('button#animateCSS').on('click',function(){
+                let text=$(this).text();
+                animateCSS('.box3',text)
+            })
+            const animateCSS = (element, animation, prefix = 'animate__') =>
+                // We create a Promise and return it
+                new Promise((resolve, reject) => {
+                    const animationName = `${prefix}${animation}`;
+                    const node = document.querySelector(element);
+
+                    node.classList.add(`${prefix}animated`, animationName);
+
+                    // When the animation ends, we clean the classes and resolve the Promise
+                    function handleAnimationEnd(event) {
+                        event.stopPropagation();
+                        node.classList.remove(`${prefix}animated`, animationName);
+                        resolve('Animation ended');
+                    }
+
+                    node.addEventListener('animationend', handleAnimationEnd, { once: true });
+                });
+
+
+
+        })
+    </script>
+
+</body>
+
+</html>
